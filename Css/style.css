@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    background-color: #e7e7ee;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#myButton{
+
+  
+   font-size: medium;
+    text-align: center;
+    font-weight: bold;  
+    color:#CD5C5C ;
+  
+
+}
+h2{
+    font-weight: bold;
+    font-size: larger;
+    color: brown;
+}
