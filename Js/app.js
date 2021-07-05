@@ -4,10 +4,14 @@ const FirstImageElement = document.getElementById('first-image');
 const SecondImageElement = document.getElementById('second-image');
 const ThirdImageElement = document.getElementById('third-image');
 
-const maxAttempts = 10;
+const maxAttempts = 25;
 let counter = 0;
 let NumberOfDisplays = 0;
 
+let arrayofNames = [];
+let arrayOfshown = [];
+let arrayOfvotes = [];
+ let randomgroup =[] ;
 
 function generateRandomIndex() {
     return Math.floor(Math.random() * Product.globalArray.length);
@@ -21,6 +25,7 @@ function Product(Name, Source) {
     this.votes = 0;
     this.shownnumber = 0;
     Product.globalArray.push(this);
+    arrayofNames.push(this.Name);
 }
 
 Product.globalArray = [];
@@ -50,31 +55,69 @@ let FirstIndex;
 let SecondIndex;
 let ThirdIndex;
 
+
+
+/*function compareArrays(arr1, arr2) {
+
+    // compare arrays
+    const result = JSON.stringify(arr1) == JSON.stringify(arr2)
+
+    // if result is true
+    if(result) {
+        console.log('The arrays have the same elements.');
+    }
+    else {
+        console.log('The arrays have different elements.');
+    }
+
+}*/
+let resultarray=[];
+let saved = randomgroup;
+console.log(saved);
+
 function renderThreeimages() {
     FirstIndex = generateRandomIndex();
     SecondIndex = generateRandomIndex();
     ThirdIndex = generateRandomIndex();
+  
+    
 
-    while (FirstIndex === SecondIndex || FirstIndex === ThirdIndex || SecondIndex === ThirdIndex) {
+    
+
+    while (FirstIndex === SecondIndex || FirstIndex === ThirdIndex || SecondIndex === ThirdIndex || resultarray.includes(FirstIndex) || resultarray.includes(SecondIndex) || resultarray.includes(ThirdIndex)){
         FirstIndex = generateRandomIndex();
         SecondIndex = generateRandomIndex();
         ThirdIndex = generateRandomIndex();
+        //let randomgroup = [FirstIndex,SecondIndex,ThirdIndex];
+     
+/*let result =
+randomgroup.length === saved.length &&
+randomgroup.every(function (element) {
+  return saved.includes(element);
+});
+if (result){
+    continue*/
+}
 
-    }
-
-
+resultarray[0]=FirstIndex;
+resultarray[1]=SecondIndex;
+resultarray[2]=ThirdIndex;
+console.log(FirstIndex,SecondIndex,ThirdIndex);       
+    
+    console.log(randomgroup);
     //console.log(FirstIndex);
     //console.log(SecondIndex);
     //console.log(ThirdIndex);
     FirstImageElement.src = Product.globalArray[FirstIndex].Source;
     Product.globalArray[FirstIndex].shownnumber++;
+  
     console.log(  Product.globalArray);
     SecondImageElement.src = Product.globalArray[SecondIndex].Source;
     Product.globalArray[SecondIndex].shownnumber++;
+    
     ThirdImageElement.src = Product.globalArray[ThirdIndex].Source;
     Product.globalArray[ThirdIndex].shownnumber++;
-
-
+    
 }
 
 renderThreeimages()
@@ -84,13 +127,18 @@ function renderList() {
     const ul = document.getElementById('unList');
     for (let i = 0; i < Product.globalArray.length; i++) {
         let li = document.createElement('li');
+        arrayOfshown.push(Product.globalArray[i].shownnumber);
+        
+        arrayOfvotes.push(Product.globalArray[i].votes);
         ul.appendChild(li);
         li.textContent = `${Product.globalArray[i].Name} had ${Product.globalArray[i].votes } votes, and was seen ${ Product.globalArray[i].shownnumber} `
+      
+        console.log(arrayOfvotes)
     }
     FirstImageElement.removeEventListener('click', handleclick);
     SecondImageElement.removeEventListener('click', handleclick);
     ThirdImageElement.removeEventListener('click', handleclick);
-
+    gettingChart();
 }
 
 
@@ -113,18 +161,23 @@ function handleclick(event) {
     if (maxAttempts >= counter) {
         if (event.target.id === 'first-image') {
             Product.globalArray[FirstIndex].votes++;
+          
             console.log('string test ');
         } else if (event.target.id === 'second-image') {
             Product.globalArray[SecondIndex].votes++;
+           
         }
         else if (event.target.id === 'third-image') {
             Product.globalArray[ThirdIndex].votes++;
-            
-        } 
+          
+              
+            }
+        
         renderThreeimages()
     } else {
         let clickMeButton = document.getElementById('myButton');
         clickMeButton.addEventListener('click', renderList);
+       
 
         //renderList();
     }
@@ -138,4 +191,39 @@ function handleclick(event) {
 
 //let clickMeButton = document.getElementById('myButton');
 //clickMeButton.addEventListener('click', renderList);
+function gettingChart(){
+    //alert("Hello");
+let ctx = document.getElementById('myChart');
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: arrayofNames,
+        datasets: [{
+            label: ' Number of votes',
+            data: arrayOfvotes ,
+
+
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+               'rgb(0,0,0)',
+            ],
+            borderWidth: 1
+        },
+
+            
+                {
+                    label: ' Number of shown',
+                    data: arrayOfshown, }]
+        
+                    
+
+
+                }
+            })
+        }
+      
+
+
 

@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+
 * {
     box-sizing: border-box;
 }
@@ -8,6 +12,7 @@ body {
     background-color: #e7e7ee;
     width: 90%;
     margin: 0 auto;
+    font-family: 'Indie Flower', cursive;
 }
 
 #myButton{
@@ -16,12 +21,50 @@ body {
    font-size: medium;
     text-align: center;
     font-weight: bold;  
-    color:#CD5C5C ;
-  
+    color:brown;
+    margin-left: 40px;
+    padding: 15px;
+  background-color: gray;
 
 }
 h2{
     font-weight: bold;
     font-size: larger;
     color: brown;
+    font-size: x-large;
+    margin-top: 20px;
+    background-color: ;
+}
+
+canvas{
+    width:200px;
+    height: 200px;
+    margin-bottom: 100px;
+}
+#sec-two{
+ float: right;
+ margin-right: -44px;
+    margin-bottom: 600px;
+    border: solid black;
+}
+
+#sec-one{
+    border: solid black;
+    float: left;;
+}
+
+#unList{
+font-weight: bold;
+font-size: x-large;
+color: black;
+background-color: burlywood;
+float: right;
+}
+h3{
+    border: solid black;
+    width: 60%;
+    height: 10%;
+ 
+    margin-top: -30px;
+    margin-right: 80px;
 }
