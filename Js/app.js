@@ -54,7 +54,7 @@ new Product('wine-glass', 'images/wine-glass.jpg');
 let FirstIndex;
 let SecondIndex;
 let ThirdIndex;
-getData();
+getinfo();
 
 
 /*function compareArrays(arr1, arr2) {
@@ -139,7 +139,7 @@ function renderList() {
     FirstImageElement.removeEventListener('click', handleclick);
     SecondImageElement.removeEventListener('click', handleclick);
     ThirdImageElement.removeEventListener('click', handleclick);
-    savedata();
+    savedinfo();
     gettingChart();
 }
 
@@ -237,14 +237,14 @@ let myChart = new Chart(ctx, {
 
         }
       
-        function savedata(){
+        function savedinfo(){
 
             const convertedArr = JSON.stringify(Product.globalArray);
             localStorage.setItem('Product.globalArray',convertedArr);
            
           }
 
-          function getData(){
+          function getinfo(){
             const data = localStorage.getItem('Product.globalArray');
             console.log(data); 
             const parsedata = JSON.parse(data); 
