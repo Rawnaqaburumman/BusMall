@@ -54,7 +54,7 @@ new Product('wine-glass', 'images/wine-glass.jpg');
 let FirstIndex;
 let SecondIndex;
 let ThirdIndex;
-
+getData();
 
 
 /*function compareArrays(arr1, arr2) {
@@ -134,10 +134,12 @@ function renderList() {
         li.textContent = `${Product.globalArray[i].Name} had ${Product.globalArray[i].votes } votes, and was seen ${ Product.globalArray[i].shownnumber} `
       
         console.log(arrayOfvotes)
+
     }
     FirstImageElement.removeEventListener('click', handleclick);
     SecondImageElement.removeEventListener('click', handleclick);
     ThirdImageElement.removeEventListener('click', handleclick);
+    savedata();
     gettingChart();
 }
 
@@ -177,8 +179,7 @@ function handleclick(event) {
     } else {
         let clickMeButton = document.getElementById('myButton');
         clickMeButton.addEventListener('click', renderList);
-       
-
+      
         //renderList();
     }
 }
@@ -189,8 +190,7 @@ function handleclick(event) {
 
 
 
-//let clickMeButton = document.getElementById('myButton');
-//clickMeButton.addEventListener('click', renderList);
+
 function gettingChart(){
     //alert("Hello");
 let ctx = document.getElementById('myChart');
@@ -204,7 +204,7 @@ let myChart = new Chart(ctx, {
 
 
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
+                ' #F4A460',
             ],
             borderColor: [
                'rgb(0,0,0)',
@@ -215,15 +215,44 @@ let myChart = new Chart(ctx, {
             
                 {
                     label: ' Number of shown',
-                    data: arrayOfshown, }]
+                    data: arrayOfshown, 
+                
+                backgroundColor: [
+                ' #3F000F',
+            ],
+                
+                
+                
+                }]
         
                     
 
+               
+                },
+                options: {
+                    maintainAspectRatio: false,
 
-                }
-            })
+                  }   })
+
+
         }
       
+        function savedata(){
 
+            const convertedArr = JSON.stringify(Product.globalArray);
+            localStorage.setItem('Product.globalArray',convertedArr);
+           
+          }
 
-
+          function getData(){
+            const data = localStorage.getItem('Product.globalArray');
+            console.log(data); 
+            const parsedata = JSON.parse(data); 
+            console.log(parsedata); 
+            if(parsedata){   //parsedOrder !== null
+          
+                Product.globalArray = parsedata;
+              // [] = null
+              //renderList();
+            }
+          }
