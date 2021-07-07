@@ -12,3 +12,6 @@ To make this market analysis maximally effective, BusMall wants you to build an 
 The app’s purpose is to have the group members choose which product, of the three displayed images, that they would be most likely to purchase, and then store, calculate, and visually display the resulting data.
 
 then the data will shown in a chart and in list to let the company take informations about this.
+
+
+Rawnaq Aburumman
